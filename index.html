@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Rest, Recharge, Rise – Digital Mural</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=Fraunces:ital,wght@0,300;0,600;1,300&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --forest:   #1d4d3a;
+    --sage:     #4a7c59;
+    --moss:     #7aad6f;
+    --mint:     #b8dbb0;
+    --cream:    #f7f2e8;
+    --gold:     #c8963e;
+    --terracotta: #c4603e;
+    --sky:      #6ba3be;
+    --lavender: #9b8bb4;
+    --ink:      #1a1a2e;
+    --warm-gray:#9e9282;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background-color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    position: relative;
+    min-height: 420px;
+    background: linear-gradient(135deg, var(--forest) 0%, #2d6a4f 45%, #40916c 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 40px 80px;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='600' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Cellipse cx='500' cy='50' rx='280' ry='200' fill='%23ffffff08'/%3E%3Cellipse cx='80' cy='350' rx='200' ry='150' fill='%23ffffff06'/%3E%3C/svg%3E") center/cover;
+    pointer-events: none;
+  }
+
+  /* floating leaves */
+  .leaf {
+    position: absolute;
+    opacity: 0.15;
+    animation: drift 18s ease-in-out infinite;
+  }
+  .leaf:nth-child(1)  { top: 10%; left: 5%;  width: 90px;  animation-delay: 0s; }
+  .leaf:nth-child(2)  { top: 60%; right: 4%; width: 130px; animation-delay: 4s; }
+  .leaf:nth-child(3)  { top: 30%; right: 18%;width: 70px;  animation-delay: 9s; }
+  .leaf:nth-child(4)  { bottom: 5%; left: 20%;width: 100px;animation-delay: 2s; }
+  @keyframes drift {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50%       { transform: translateY(-18px) rotate(8deg); }
+  }
+
+  .hero-tag {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--mint);
+    margin-bottom: 18px;
+    opacity: 0.9;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 7vw, 5.2rem);
+    font-weight: 900;
+    color: #fff;
+    text-align: center;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--moss);
+  }
+
+  .hero-subtitle {
+    margin-top: 22px;
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(255,255,255,0.75);
+    text-align: center;
+    max-width: 600px;
+  }
+
+  .hero-wave {
+    position: absolute;
+    bottom: -2px; left: 0; right: 0;
+    line-height: 0;
+  }
+  .hero-wave svg { width: 100%; height: 60px; display: block; }
+
+  /* ─── ASSIGNMENT INFO BAND ─── */
+  .info-band {
+    background: var(--forest);
+    color: rgba(255,255,255,0.88);
+    padding: 18px 40px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 40px;
+    justify-content: center;
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+  }
+  .info-band span { display: flex; align-items: center; gap: 7px; }
+  .info-band strong { color: var(--mint); }
+
+  /* ─── LAYOUT ─── */
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 30px; }
+  .section { padding: 70px 0 50px; }
+
+  /* ─── INTRO QUOTE ─── */
+  .intro-quote {
+    text-align: center;
+    padding: 60px 20px 30px;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  .intro-quote blockquote {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.35rem, 3vw, 1.85rem);
+    font-style: italic;
+    color: var(--forest);
+    line-height: 1.55;
+    position: relative;
+    padding: 0 30px;
+  }
+  .intro-quote blockquote::before {
+    content: '"';
+    font-size: 6rem;
+    color: var(--mint);
+    position: absolute;
+    top: -30px; left: -10px;
+    line-height: 1;
+    opacity: 0.5;
+  }
+  .intro-quote cite {
+    display: block;
+    margin-top: 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+    font-style: normal;
+  }
+
+  /* ─── QUESTION HEADER ─── */
+  .q-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+  .q-number {
+    flex-shrink: 0;
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: #fff;
+  }
+  .q-number.q1 { background: var(--sage); }
+  .q-number.q2 { background: var(--terracotta); }
+
+  .q-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.3rem, 3vw, 1.9rem);
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--forest);
+  }
+  .q-title.q2c { color: var(--terracotta); }
+
+  /* ─── VERB SECTIONS ─── */
+  .verb-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    gap: 24px;
+    margin-bottom: 50px;
+  }
+
+  .verb-card {
+    border-radius: 18px;
+    padding: 30px 28px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .verb-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+  }
+
+  .verb-card.stative   { background: #eef7f0; border-left: 5px solid var(--sage); }
+  .verb-card.action    { background: #fef6ec; border-left: 5px solid var(--gold); }
+  .verb-card.modal     { background: #eef3f8; border-left: 5px solid var(--sky); }
+  .verb-card.stative2  { background: #f5f0f9; border-left: 5px solid var(--lavender); }
+  .verb-card.action2   { background: #fdf0ec; border-left: 5px solid var(--terracotta); }
+  .verb-card.modal2    { background: #ecf5f8; border-left: 5px solid var(--sky); }
+
+  .verb-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 30px;
+    margin-bottom: 18px;
+  }
+  .stative  .verb-badge  { background: var(--sage);        color: #fff; }
+  .action   .verb-badge  { background: var(--gold);        color: #fff; }
+  .modal    .verb-badge  { background: var(--sky);         color: #fff; }
+  .stative2 .verb-badge  { background: var(--lavender);    color: #fff; }
+  .action2  .verb-badge  { background: var(--terracotta);  color: #fff; }
+  .modal2   .verb-badge  { background: var(--sky);         color: #fff; }
+
+  .verb-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 14px;
+    line-height: 1.3;
+  }
+
+  .verb-card p {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: #3a3a4a;
+  }
+
+  .verb-highlight {
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-underline-offset: 3px;
+  }
+  .stative  .verb-highlight { color: var(--forest); }
+  .action   .verb-highlight { color: #9a6e1a; }
+  .modal    .verb-highlight { color: #2c6080; }
+  .stative2 .verb-highlight { color: #6b4d8a; }
+  .action2  .verb-highlight { color: var(--terracotta); }
+  .modal2   .verb-highlight { color: #2c6080; }
+
+  /* icon circle */
+  .icon-circle {
+    position: absolute;
+    top: 20px; right: 20px;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem;
+    background: rgba(255,255,255,0.55);
+  }
+
+  /* ─── DIVIDER ─── */
+  .divider {
+    height: 3px;
+    background: linear-gradient(90deg, var(--mint), var(--gold), var(--sky));
+    border-radius: 2px;
+    margin: 10px 0 60px;
+    opacity: 0.6;
+  }
+
+  /* ─── BENEFITS STRIP ─── */
+  .benefits-strip {
+    background: linear-gradient(135deg, var(--forest) 0%, #2d6a4f 100%);
+    padding: 50px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .benefits-strip::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 30px,
+      rgba(255,255,255,0.03) 30px,
+      rgba(255,255,255,0.03) 60px
+    );
+  }
+  .benefits-strip .container { position: relative; z-index: 2; }
+  .benefits-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 36px;
+    font-style: italic;
+  }
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 20px;
+    text-align: center;
+  }
+  .benefit-item {
+    padding: 24px 16px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.12);
+    transition: background 0.3s;
+  }
+  .benefit-item:hover { background: rgba(255,255,255,0.15); }
+  .benefit-icon { font-size: 2.2rem; margin-bottom: 12px; display: block; }
+  .benefit-label {
+    font-size: 0.82rem;
+    color: var(--mint);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .benefit-desc {
+    margin-top: 6px;
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.5;
+  }
+
+  /* ─── VERB KEY ─── */
+  .verb-key {
+    background: #fff;
+    border-radius: 20px;
+    padding: 32px 36px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+    margin: 50px 0;
+  }
+  .verb-key h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--forest);
+    margin-bottom: 20px;
+  }
+  .key-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .key-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 18px;
+    border-radius: 40px;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+  .key-item.k-stative  { background: #eef7f0; color: var(--sage); }
+  .key-item.k-action   { background: #fef6ec; color: #9a6e1a; }
+  .key-item.k-modal    { background: #eef3f8; color: #2c6080; }
+  .key-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .k-stative .key-dot  { background: var(--sage); }
+  .k-action  .key-dot  { background: var(--gold); }
+  .k-modal   .key-dot  { background: var(--sky); }
+  .key-examples {
+    margin-top: 10px;
+    font-size: 0.8rem;
+    color: var(--warm-gray);
+  }
+
+  /* ─── REFERENCES ─── */
+  .references {
+    background: #f0ede6;
+    border-top: 4px solid var(--forest);
+    padding: 60px 0 40px;
+  }
+  .ref-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--forest);
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .ref-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .ref-list li {
+    font-size: 0.85rem;
+    line-height: 1.75;
+    color: #3a3530;
+    padding-left: 28px;
+    position: relative;
+  }
+  .ref-list li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 9px;
+    width: 12px; height: 2px;
+    background: var(--sage);
+  }
+  .ref-list a {
+    color: var(--sage);
+    word-break: break-all;
+  }
+  .ref-number {
+    color: var(--gold);
+    font-weight: 700;
+    margin-right: 4px;
+  }
+
+  /* ─── FOOTER STRIP ─── */
+  .footer-strip {
+    background: var(--ink);
+    color: rgba(255,255,255,0.55);
+    padding: 20px 40px;
+    text-align: center;
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .fadeup { animation: fadeUp 0.7s ease both; }
+  .delay-1 { animation-delay: 0.15s; }
+  .delay-2 { animation-delay: 0.3s; }
+  .delay-3 { animation-delay: 0.45s; }
+
+  @media (max-width: 600px) {
+    .info-band { flex-direction: column; align-items: center; gap: 8px; }
+    .q-header  { flex-direction: column; }
+    .verb-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════ HERO ══════════ -->
+<header class="hero">
+  <!-- decorative leaves -->
+  <svg class="leaf" viewBox="0 0 100 140" fill="white"><path d="M50 0 C20 40 0 80 50 140 C100 80 80 40 50 0Z"/></svg>
+  <svg class="leaf" viewBox="0 0 100 140" fill="white"><path d="M50 0 C20 40 0 80 50 140 C100 80 80 40 50 0Z"/></svg>
+  <svg class="leaf" viewBox="0 0 100 140" fill="white"><path d="M50 0 C20 40 0 80 50 140 C100 80 80 40 50 0Z"/></svg>
+  <svg class="leaf" viewBox="0 0 100 140" fill="white"><path d="M50 0 C20 40 0 80 50 140 C100 80 80 40 50 0Z"/></svg>
+
+  <p class="hero-tag">Digital Mural · English · Well-being</p>
+  <h1 class="hero-title">Rest, <em>Recharge</em>,<br/>Rise</h1>
+  <p class="hero-subtitle">How free time and relaxation shape the person you become</p>
+
+  <div class="hero-wave">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="">
+      <path d="M0,30 C360,0 1080,60 1440,30 L1440,60 L0,60 Z" fill="#f7f2e8"/>
+    </svg>
+  </div>
+</header>
+
+<!-- ══════════ ASSIGNMENT INFO ══════════ -->
+<div class="info-band">
+  <span>📌 <strong></strong> Administracion de Empresa</span>
+  <span>👤 <strong>Student:</strong> Cristian Alexander rojas</span>
+  <span>📚 <strong></strong> English ll Semana 3 y 4</span>
+  <span>🎓 <strong>Teacher:</strong> Adriana Esperanza Niño Sánchez</span>
+  <span>📅 <strong>Date:</strong> May 25, 2026</span>
+</div>
+
+<!-- ══════════ INTRO QUOTE ══════════ -->
+<div class="intro-quote fadeup">
+  <blockquote>
+    Almost everything will work again if you unplug it for a few minutes — including you.
+  </blockquote>
+  <cite>— Anne Lamott, escritora estadounidense</cite>
+</div>
+
+<div class="container">
+
+  <!-- ══════════ VERB KEY ══════════ -->
+  <div class="verb-key fadeup delay-1">
+    <h2>🔑 Verb Types Used in This Mural</h2>
+    <div class="key-items">
+      <div class="key-item k-stative">
+        <div class="key-dot"></div>
+        <div>
+          <strong>Stative Verbs</strong>
+          <div class="key-examples">feel · know · believe · seem · love · need · understand · want</div>
+        </div>
+      </div>
+      <div class="key-item k-action">
+        <div class="key-dot"></div>
+        <div>
+          <strong>Action Verbs</strong>
+          <div class="key-examples">practice · run · sleep · read · walk · do · reduce · build</div>
+        </div>
+      </div>
+      <div class="key-item k-modal">
+        <div class="key-dot"></div>
+        <div>
+          <strong>Modal Verbs</strong>
+          <div class="key-examples">can · should · must · may · could · ought to · might</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ QUESTION 1 ══════════ -->
+  <section class="section">
+    <div class="q-header">
+      <div class="q-number q1">Q1</div>
+      <h2 class="q-title">How can the appropriate use of free time improve your physical and mental well-being?</h2>
+    </div>
+
+    <div class="verb-grid">
+
+      <!-- STATIVE -->
+      <div class="verb-card stative fadeup">
+        <div class="icon-circle">🌿</div>
+        <span class="verb-badge">🔵 Stative Verbs</span>
+        <h3>What We Know and Feel</h3>
+        <p>
+          Free time <span class="verb-highlight">feels</span> essential, not optional. Research
+          <span class="verb-highlight">shows</span> that the brain <span class="verb-highlight">needs</span>
+          regular breaks to consolidate memory and regulate emotions. Most people
+          <span class="verb-highlight">understand</span> this in theory, yet they
+          <span class="verb-highlight">believe</span> that stopping is a form of laziness. It
+          isn't. Rest <span class="verb-highlight">seems</span> passive, but internally,
+          the body and mind <span class="verb-highlight">remain</span> very active during
+          recovery. We <span class="verb-highlight">know</span> that chronic stress
+          damages the cardiovascular system — free time is one of the few tools
+          that genuinely counters it.
+        </p>
+      </div>
+
+      <!-- ACTION -->
+      <div class="verb-card action fadeup delay-1">
+        <div class="icon-circle">🏃</div>
+        <span class="verb-badge">🟡 Action Verbs</span>
+        <h3>What Free Time Does for Your Body</h3>
+        <p>
+          When people <span class="verb-highlight">exercise</span> or
+          <span class="verb-highlight">walk</span> during free time, cortisol levels
+          <span class="verb-highlight">drop</span> significantly.
+          Sleeping enough <span class="verb-highlight">strengthens</span> the immune system.
+          <span class="verb-highlight">Practicing</span> yoga or stretching
+          <span class="verb-highlight">reduces</span> muscular tension.
+          Students who <span class="verb-highlight">read</span> for pleasure
+          <span class="verb-highlight">build</span> vocabulary and
+          <span class="verb-highlight">improve</span> focus. Playing with friends
+          or family <span class="verb-highlight">releases</span> endorphins.
+          Even simply <span class="verb-highlight">sitting</span> in a park and
+          breathing deeply <span class="verb-highlight">lowers</span> blood pressure.
+          The body <span class="verb-highlight">records</span> every rest you give it.
+        </p>
+      </div>
+
+      <!-- MODAL -->
+      <div class="verb-card modal fadeup delay-2">
+        <div class="icon-circle">💡</div>
+        <span class="verb-badge">🔷 Modal Verbs</span>
+        <h3>What We Can and Should Do</h3>
+        <p>
+          Free time <span class="verb-highlight">can</span> improve sleep quality when
+          used intentionally. You <span class="verb-highlight">should</span> schedule
+          at least 30 minutes of personal activity each day — not as a reward, but
+          as a habit. Hobbies <span class="verb-highlight">may</span> reduce the risk
+          of depression over time. Physical activity
+          <span class="verb-highlight">must</span> not be confused with productivity;
+          both matter. Anyone <span class="verb-highlight">could</span> start with
+          something small: a walk, a song, a sketch.
+          According to Cadavid-Ruiz et al. (2023), students who
+          <span class="verb-highlight">can</span> balance study with leisure
+          <span class="verb-highlight">report</span> higher perceived well-being.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+</div><!-- /container -->
+
+<!-- ══════════ BENEFITS STRIP ══════════ -->
+<div class="benefits-strip">
+  <div class="container">
+    <p class="benefits-title">Free time, used well, changes everything</p>
+    <div class="benefits-grid">
+      <div class="benefit-item">
+        <span class="benefit-icon">😴</span>
+        <div class="benefit-label">Better Sleep</div>
+        <div class="benefit-desc">Rest routines regulate the circadian cycle.</div>
+      </div>
+      <div class="benefit-item">
+        <span class="benefit-icon">🧠</span>
+        <div class="benefit-label">Sharper Focus</div>
+        <div class="benefit-desc">Breaks reload the brain's attention capacity.</div>
+      </div>
+      <div class="benefit-item">
+        <span class="benefit-icon">❤️</span>
+        <div class="benefit-label">Heart Health</div>
+        <div class="benefit-desc">Activity reduces blood pressure and cortisol.</div>
+      </div>
+      <div class="benefit-item">
+        <span class="benefit-icon">😊</span>
+        <div class="benefit-label">Better Mood</div>
+        <div class="benefit-desc">Leisure triggers endorphin and dopamine release.</div>
+      </div>
+      <div class="benefit-item">
+        <span class="benefit-icon">🤝</span>
+        <div class="benefit-label">Social Bonds</div>
+        <div class="benefit-desc">Play and rest time strengthen relationships.</div>
+      </div>
+      <div class="benefit-item">
+        <span class="benefit-icon">🛡️</span>
+        <div class="benefit-label">Immune Boost</div>
+        <div class="benefit-desc">Sleep and exercise reinforce immune defenses.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="divider"></div>
+
+  <!-- ══════════ QUESTION 2 ══════════ -->
+  <section class="section">
+    <div class="q-header">
+      <div class="q-number q2">Q2</div>
+      <h2 class="q-title q2c">What is the importance of relaxation activities in your life?</h2>
+    </div>
+
+    <div class="verb-grid">
+
+      <!-- STATIVE -->
+      <div class="verb-card stative2 fadeup">
+        <div class="icon-circle">🧘</div>
+        <span class="verb-badge">🔵 Stative Verbs</span>
+        <h3>What Relaxation Means to Us</h3>
+        <p>
+          Deep down, everyone <span class="verb-highlight">wants</span> to feel
+          at peace. Relaxation <span class="verb-highlight">seems</span> like a
+          luxury, but it <span class="verb-highlight">is</span> actually a biological
+          necessity. The brain <span class="verb-highlight">belongs</span> to a body
+          that <span class="verb-highlight">needs</span> recovery. I
+          <span class="verb-highlight">believe</span> that a person who
+          <span class="verb-highlight">knows</span> how to rest
+          <span class="verb-highlight">understands</span> something others miss:
+          that output depends on input, and rest <span class="verb-highlight">is</span>
+          the most undervalued input of all. Relaxation
+          <span class="verb-highlight">feels</span> like a reset — and it
+          genuinely <span class="verb-highlight">is</span> one, neurologically speaking.
+        </p>
+      </div>
+
+      <!-- ACTION -->
+      <div class="verb-card action2 fadeup delay-1">
+        <div class="icon-circle">🌸</div>
+        <span class="verb-badge">🟠 Action Verbs</span>
+        <h3>What Relaxation Actually Does</h3>
+        <p>
+          <span class="verb-highlight">Meditating</span> for 10 minutes a day
+          <span class="verb-highlight">lowers</span> anxiety markers in the brain.
+          <span class="verb-highlight">Listening</span> to music
+          <span class="verb-highlight">activates</span> the parasympathetic nervous
+          system, which <span class="verb-highlight">slows</span> the heart rate.
+          <span class="verb-highlight">Spending</span> time in nature
+          <span class="verb-highlight">restores</span> mental clarity.
+          <span class="verb-highlight">Drawing</span>, <span class="verb-highlight">writing</span>,
+          or <span class="verb-highlight">cooking</span> for pleasure
+          <span class="verb-highlight">redirects</span> the mind away from stressors.
+          According to Minsalud (2023), Colombians who
+          <span class="verb-highlight">practice</span> regular self-care habits
+          <span class="verb-highlight">report</span> fewer episodes of chronic stress.
+        </p>
+      </div>
+
+      <!-- MODAL -->
+      <div class="verb-card modal2 fadeup delay-2">
+        <div class="icon-circle">⭐</div>
+        <span class="verb-badge">🔷 Modal Verbs</span>
+        <h3>What Relaxation Can Give You</h3>
+        <p>
+          Relaxation activities <span class="verb-highlight">can</span> prevent burnout
+          before it starts — and this <span class="verb-highlight">should</span> matter
+          to every student and professional. You
+          <span class="verb-highlight">must</span> not wait until you break down
+          to start resting. Yoga, breathing exercises, or even a walk in a park
+          <span class="verb-highlight">could</span> reduce cortisol by up to 12%
+          in a single session. Mindfulness practices
+          <span class="verb-highlight">may</span> change the brain structure
+          over time, improving memory and emotional regulation. You
+          <span class="verb-highlight">can</span> begin with just ten minutes.
+          That's enough.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Summary note -->
+    <div style="background:#fff7ed; border-radius:16px; padding:28px 32px; border-left:5px solid var(--terracotta); margin-top:10px;">
+      <p style="font-size:0.93rem; line-height:1.8; color:#3a2a1a;">
+        <strong style="color:var(--terracotta);">📊 Colombian Data:</strong>
+        According to the Encuesta de Salud Mental del Ministerio de Salud y Protección Social,
+        <strong>66.3%</strong> of Colombians have faced mental health challenges at some point in their lives
+        (Minsalud, 2023). Among university students in Cali, those who
+        regularly engaged in leisure activities showed <strong>lower levels</strong> of depression, anxiety, and stress
+        (Cadavid-Ruiz et al., 2023). The data is clear: relaxation is not a waste of time. It's the work
+        that makes all other work possible.
+      </p>
+    </div>
+  </section>
+
+</div><!-- /container -->
+
+<!-- ══════════ REFERENCES ══════════ -->
+<footer class="references">
+  <div class="container">
+    <h2 class="ref-title">📚 References <small style="font-size:0.7rem;color:var(--warm-gray);font-family:'DM Sans',sans-serif;"></small></h2>
+    <ul class="ref-list">
+
+      <li>
+        <span class="ref-number">[1]</span>
+        Cadavid-Ruiz, N., Herrán-Murillo, Y. F., Patiño-Gil, J. C., Ochoa-Muñoz, A. F., &amp; Varela-Arévalo, M. T. (2023). Actividades de ocio y su relación con la salud mental en jóvenes universitarios de Cali, Colombia. <em>Retos: Nuevas Tendencias en Educación Física, Deporte y Recreación</em>, (50), 1–12.
+        <a href="https://recyt.fecyt.es/index.php" target="_blank">https://recyt.fecyt.es/index.php
+        </a>
+      </li>
+
+      <li>
+        <span class="ref-number">[2]</span>
+        Ministerio de Salud y Protección Social de Colombia. (2023). <em>Día Mundial de la Salud Mental 2023: sondeo de percepción en Colombia.</em> Minsalud.
+        <a href="https://saludata.saludcapital.gov.co/osb/dia-mundial-de-la-salud-mental-2023/"_blank">https://saludata.saludcapital.gov.co/osb/dia-mundial-de-la-salud-mental-2023/</a>
+      </li>
+
+      <li>
+        <span class="ref-number">[3]</span>
+        Ministerio de Salud y Protección Social de Colombia. (2024). <em>Análisis de situación de salud mental: determinantes sociales en Colombia.</em> Minsalud.
+        <a href="https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/ENT/asis-salud-mental-determinantes-sociales-colombia.pdf" target="_blank">https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/ENT/asis-salud-mental-determinantes-sociales-colombia.pdf</a>
+      </li>
+
+      <li>
+        <span class="ref-number">[4]</span>
+        Espinel, A., Gómez-Acosta, A., &amp; colaboradores. (2020). Actividad física y salud mental en estudiantes universitarios de Bogotá durante la pandemia por COVID-19. <em>Fundación Universitaria de Ciencias de la Salud (FUCS)</em>.
+        <a href="https://repositorio.fucsalud.edu.co/entities/publication/7f8de904-4b24-4603-b4b6-eaa6ebb95787" target="_blank">https://repositorio.fucsalud.edu.co/entities/publication/7f8de904</a>
+      </li>
+
+      <li>
+        <span class="ref-number">[5]</span>
+        Organización Mundial de la Salud. (2022). <em>Burnout en contextos académicos: definición y prevención.</em> OMS.
+        <a href="https://www.who.int/es" target="_blank">https://www.who.int/es</a>
+      </li>
+
+      <li>
+        <span class="ref-number">[6]</span>
+        Universidad del Rosario. (2025). <em>Salud mental en Colombia: cómo prevenir el burnout académico.</em> Educación Virtual Urosario.
+        <a href="https://educacionvirtual.urosario.edu.co/blog/salud-y-bienestar/salud-mental/" target="_blank">https://educacionvirtual.urosario.edu.co/blog/salud-y-bienestar/salud-mental/</a>
+      </li>
+
+      <li>
+        <span class="ref-number">[7]</span>
+        Psicopartner. (2024). <em>Importancia del ocio y tiempo libre en la salud mental.</em>
+        <a href="https://www.psicopartner.com/importancia-del-ocio-y-tiempo-libre-en-la-salud-mental/" target="_blank">https://www.psicopartner.com/importancia-del-ocio-y-tiempo-libre-en-la-salud-mental/</a>
+      </li>
+
+      <li>
+        <span class="ref-number">[8]</span>
+        Casas, G. (1991). La salud mental, el tiempo libre, el ocio, la diversión y la recreación. <em>Revista de Trabajo Social</em>, 15(35), 3–12.
+        <a href="https://www.binasss.sa.cr/revistas/ts/v15n351991/art03.pdf" target="_blank">https://www.binasss.sa.cr/revistas/ts/v15n351991/art03.pdf</a>
+      </li>
+
+      <li>
+        <span class="ref-number">[9]</span>
+        Colombia Aprende – Ministerio de Educación Nacional. (s. f.). <em>Bienestar en tu mente: recursos digitales para la salud mental en la comunidad educativa.</em>
+        <a href="https://www.colombiaaprende.edu.co/contenidos/coleccion/bienestar-en-tu-mente" target="_blank">https://www.colombiaaprende.edu.co/contenidos/coleccion/bienestar-en-tu-mente</a>
+      </li>
+      <li>
+        <span class="ref-number">[10]</span> 
+        Escobar-Álvarez, M. Á. (2018). 2.4 Modals. En English grammar and learning tasks for tourism studies (pp. 50–52). UNED – Universidad Nacional de Educación a Distancia.</em>
+        <a href="https://elibro.net/es/ereader/uniminuto/105351?page=50" target="_blank">https://elibro.net/es/ereader/uniminuto/105351?page=50</a>
+      </li>
+
+
+    </ul>
+  </div>
+</footer>
+
+
+
+</body>
+</html>
+
